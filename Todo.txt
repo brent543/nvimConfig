@@ -1,0 +1,25 @@
+- FZF remaps
+
+- ':Git' remap
+
+- ':Git push' remap
+
+- GitGutter
+
+- Sneak
+
+- Nerdtree replace newt
+
+- Create mapping to toggle booleans and maybe others
+
+- Enable editing and previewing markdown file (must be able to have Common Mark)
+
+- Enable debugging for Go
+
+- Enable LSP for Go
+
+- Create maping to jump to next item in quick fix.
+
+- TOML support
+
+- Remove -- INSERT -- since airline does it.
