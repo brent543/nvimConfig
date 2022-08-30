@@ -4,10 +4,13 @@
   "diagnostic.warningSign": "!",
   "diagnostic.infoSign": "?",
   "diagnostic.checkCurrentLine": true,
+  "diagnostic.displayByAle":true,
   "coc.preferences.formatOnSaveFiletypes": [
     "html",
     "json",
-    "css"
+    "css",
+    "md",
+    "markdown"
   ],
   "languageserver": {
     "golang": {
