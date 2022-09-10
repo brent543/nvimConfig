@@ -30,8 +30,6 @@ call plug#begin('~/.config/nvim/autoload/')
 
     Plug 'junegunn/gv.vim' "Git commit browser, requires fugitive
 
-    Plug 'L3MON4D3/LuaSnip'
-
     Plug 'andymass/vim-matchup' "Match (,{, [, and if, else with % 
 
     Plug 'scuilion/markdown-drawer' "See and jump to headers in Markdown files 

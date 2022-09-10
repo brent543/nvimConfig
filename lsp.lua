@@ -11,27 +11,27 @@ local capabilities = { require('cmp_nvim_lsp').update_capabilities(vim.lsp.proto
 local cmp = require'cmp'
 
 cmp.setup {
-  native_menu = false,
-  ghost_text = false,
+  native_menu = true,
+  ghost_text = true,
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp', max_item_count=15 },
-    { name = 'luasnip' }, -- For luasnip users.
+    { name = 'ultisnips' }, 
   }, {
     { name = 'buffer', keyword_length = 4},
   }),
@@ -104,7 +104,24 @@ local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
+
+require'lspconfig'.ltex.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
+require('lspconfig')['texlab'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
 require('lspconfig')['pyright'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+require('lspconfig')['marksman'].setup{
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
@@ -182,5 +199,3 @@ require("clangd_extensions").setup {
         },
     },
 }
---Setup lspconfig.
-
