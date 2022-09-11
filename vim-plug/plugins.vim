@@ -92,6 +92,7 @@ call plug#begin('~/.config/nvim/autoload/')
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'p00f/clangd_extensions.nvim'
+    Plug 'barreiroleo/ltex_extra.nvim'
 
     "Debugging
     Plug 'mfussenegger/nvim-dap' " Allow Debugging in NVIM

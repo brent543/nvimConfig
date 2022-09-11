@@ -105,10 +105,42 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
+
 require'lspconfig'.ltex.setup{
-  on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<leader>sh', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
+    -- your other on_attach functions.
+    require("ltex_extra").setup{
+      load_langs = { "en-US" }, -- table <string> : languages for witch dictionaries will be loaded
+      init_check = true, -- boolean : whether to load dictionaries on startup
+      path = "./.ltex", -- string : path to store dictionaries. Relative path uses current working directory
+      log_level = "none", -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+    }
+  end,
+  settings = {
+    ltex = {
+      -- your settings.
+    }
+  } 
 }
 
 require('lspconfig')['texlab'].setup{
