@@ -8,7 +8,7 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/')
 
-    Plug 'dense-analysis/ale' " Async Linting Engine
+    "Plug 'dense-analysis/ale' " Async Linting Engine
 
     Plug 'jiangmiao/auto-pairs' " Auto pairs for '(' '[' '{'
 
@@ -30,26 +30,34 @@ call plug#begin('~/.config/nvim/autoload/')
 
     Plug 'junegunn/gv.vim' "Git commit browser, requires fugitive
 
-    Plug 'andymass/vim-matchup' "Match (,{, [, and if, else with % 
+    Plug 'onsails/lspkind.nvim'
 
-    Plug 'scuilion/markdown-drawer' "See and jump to headers in Markdown files 
+    Plug 'andymass/vim-matchup' "Match (,{, [, and if, else with %
 
+    Plug 'scuilion/markdown-drawer' "See and jump to headers in Markdown files
+
+    Plug 'Zamua/mocha'
+    
     Plug 'yegappan/mru' "Open Most recently used files
 
     Plug 'scrooloose/NERDTree' " File Explorer
+
     Plug 'nvim-lua/plenary.nvim' "Provides Async Couroutines.
 
     Plug 'scrooloose/syntastic' "Syntax checking and reporting for Lots of languages.
+
+    Plug 'folke/todo-comments.nvim' "Highlight TODO etc comments.
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  "Syntax tree generator.
 
     "Plug 'andrewRadev/tagalong.vim' "Auto rename matching tag in html/xml.
 
     Plug 'preservim/tagbar' "Show tags for file for better code structure comprehension.
-    
-    
+
     Plug 'vim-airline/vim-airline'  " Fancy Status Line
     Plug 'vim-airline/vim-airline-themes'
+
+    Plug 'miguelmoraperea/vim-flex' "reminders to flex/strech/stop staring at a screen.
 
     Plug 'airblade/vim-gitgutter' "add git status marking for new removed or modified lines in the gutter.
 
@@ -59,19 +67,19 @@ call plug#begin('~/.config/nvim/autoload/')
 
     Plug 'szw/vim-maximizer' "Maximize and unmaximize the current split quickly
 
-    Plug 'tpope/vim-obsession' "Handle Sessions to save buffers and splits 
+    Plug 'tpope/vim-obsession' "Handle Sessions to save buffers and splits
     Plug 'dhruvasagar/vim-prosession'
 
 
-    Plug 'junegunn/vim-peekaboo' "Display the contents of the registers after 
-                                 " double qoute in normal mode.                                                   
+    Plug 'junegunn/vim-peekaboo' "Display the contents of the registers after
+                                 "double qoute in normal mode.
 
     "Plug 'sheerun/vim-polyglot' " Better Syntax SupportUse fzf with vim
 
     Plug 'SirVer/ultisnips'
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-    Plug 'honza/vim-snippets'   " Add snippets support to vim (needs verification, do I really need, does it add 
+    Plug 'honza/vim-snippets'   " Add snippets support to vim (needs verification, do I really need, does it add
 
     Plug 'mhinz/vim-startify'   " A start screen to select a file or project
 
@@ -80,9 +88,12 @@ call plug#begin('~/.config/nvim/autoload/')
     Plug 'lervag/vimtex'         " Latex support for vim
     Plug 'conornewton/vim-latex-preview'
 
-    "                           Color Themes                              
+    "                           Color Themes
 
     Plug 'gruvbox-community/gruvbox'
+    Plug 'rktjmp/lush.nvim'
+    Plug 'EdenEast/nightfox.nvim'  
+    Plug 'kartikp10/noctis.nvim'
 
     " LSP
     Plug 'neovim/nvim-lspconfig' " Provides configs for the native LSP in neovim

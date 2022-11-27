@@ -1,17 +1,25 @@
 -- lsp.lua, sourced by intit.vim, provides settings for neovim builtin lsp.
--- -- -- -- -- -- -- -- -- -- -- 
+-- -- -- -- -- -- -- -- -- -- --
 
 -- Settings for nvim-cmp --
 
 vim.opt.completeopt={"menu", "menuone", "noselect"}
 
 -- add cmp_nvim_lsp
-local capabilities = { require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) } 
+local capabilities = { require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+
+local ok, lspkind = pcall(require, "lspkind")
+if not ok then
+  return
+end
+
+lspkind.init()
 
 local cmp = require'cmp'
 
+
 cmp.setup {
-  native_menu = true,
+  native_menu = false,
   ghost_text = true,
   snippet = {
     expand = function(args)
@@ -27,14 +35,29 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp', max_item_count=15 },
-    { name = 'ultisnips' }, 
+    { name = 'nvim_lsp', max_item_count = 10 },
+    { name = 'ultisnips' },
   }, {
     { name = 'buffer', keyword_length = 4},
   }),
+
+  formatting = {
+    format = lspkind.cmp_format {
+      mode = 'text',
+      maxwidth=30,
+
+      ellipsis_char = '...',
+      menu = {
+        buffer = "[BUF]",
+        nvim_lsp = "[LSP]",
+        path = "[PATH]",
+        ultisnips = "[SNIP]",
+      },
+    },
+  }
 }
 
 
@@ -87,6 +110,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<leader>ic', vim.lsp.buf.incoming_calls, bufopts)
+  vim.keymap.set('n', '<leader>oc', vim.lsp.buf.outgoing_calls, bufopts)
   vim.keymap.set('n', '<leader>sh', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -140,7 +165,7 @@ require'lspconfig'.ltex.setup{
     ltex = {
       -- your settings.
     }
-  } 
+  }
 }
 
 require('lspconfig')['texlab'].setup{
@@ -160,7 +185,7 @@ require('lspconfig')['marksman'].setup{
 }
 
 -- Clangd setup --
-require("clangd_extensions").setup {
+--[[ require('clangd_extensions').setup {
     server = {
       capabilities=capabilities,
       on_attach=on_attach,
@@ -201,22 +226,22 @@ require("clangd_extensions").setup {
         },
         ast = {
             role_icons = {
-                type = "",
-                declaration = "",
-                expression = "",
-                specifier = "",
-                statement = "",
-                ["template argument"] = "",
+                type = "type",
+                declaration = "declaration",
+                expression = "expression",
+                specifier = "specifier",
+                statement = "statement",
+                ["template argument"] = "template agr",
             },
 
             kind_icons = {
-                Compound = "",
-                Recovery = "",
-                TranslationUnit = "",
-                PackExpansion = "",
-                TemplateTypeParm = "",
-                TemplateTemplateParm = "",
-                TemplateParamObject = "",
+                Compound = "Compond",
+                Recovery = "Recovery",
+                TranslationUnit = "TranslationUnit",
+                PackExpansion = "PackExpansion",
+                TemplateTypeParm = "TemplateTypeParm",
+                TemplateTemplateParm = "TemplateTemplateParm",
+                TemplateParamObject = "TemplateParamObject",
             },
 
             highlights = {
@@ -231,3 +256,4 @@ require("clangd_extensions").setup {
         },
     },
 }
+]]

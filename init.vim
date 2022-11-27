@@ -4,6 +4,7 @@ source ~/.config/nvim/keyMappings.vim
 source ~/.config/nvim/commands.vim
 source ~/.config/nvim/treesitter.vim
 source ~/.config/nvim/lsp.lua
+source ~/.config/nvim/debug.lua
 source ~/.config/nvim/pluginSettings/pluginSettings.vim
 
 """""""""""""""""""""""""""""" Color Scheme Selection """""""""""""""""""""""""

@@ -8,4 +8,7 @@ source ~/.config/nvim/pluginSettings/fzf.vim
 source ~/.config/nvim/pluginSettings/fzf-checkout.vim
 source ~/.config/nvim/pluginSettings/nerdtree.vim
 source ~/.config/nvim/pluginSettings/vim-go.vim
+source ~/.config/nvim/pluginSettings/vim-flex.vim
+source ~/.config/nvim/pluginSettings/matchup.lua
+"source ~/.config/nvim/pluginSettings/todo-comments.lua
 

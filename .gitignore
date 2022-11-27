@@ -8,3 +8,4 @@
 autoload/*
 !vim-plug/README.txt
 !vim-plug/plugins.vim
+.ltex

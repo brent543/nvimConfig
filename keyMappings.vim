@@ -17,8 +17,6 @@ nnoremap [l :lprev <CR>
 "Faster search and replace
 noremap <leader>sr :%s:::cg<Left><Left><Left><Left>
 
-"switch windows without ctrl
-nnoremap <leader>w <C-W>
 
 """""""""""""""""""""""""""""""""""""""Keymappings for Plugins""""""""""""""""""""""""""""""""""""""
 
